@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,11 +124,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Items.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Project_1_Kim_WooBin.cpp" />
+    <ClCompile Include="RoundSystem.cpp" />
+    <ClCompile Include="Store.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Guidance.txt" />
     <Text Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Items.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RoundSystem.h" />
+    <ClInclude Include="Store.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
