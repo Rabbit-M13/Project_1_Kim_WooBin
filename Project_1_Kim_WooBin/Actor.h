@@ -10,6 +10,11 @@ public:
 	{
 
 	}
+	virtual ~Actor() {};
+
+	// Debug : Enemy Attack Random Ratio
+	int CountPlayerAttack = 0;
+	int CountSelfAttack = 0;
 
 	/// <summary>
 	/// 플레이어의 이름을 리턴한다.
@@ -57,7 +62,7 @@ public:
 	/// Target에게 공격하는 함수 || Actor::Enemy 또는 Actor::Player에서 'TakeDamage()' 호출
 	/// </summary>
 	/// <param name="InTarget">공격을 받는 대상</param>
-	void Attack(Actor* InTarget); /*!!!얘를 가상함수로 만들어서 Enemy랑 Player랑 따로 구현해야 하는지 고민해보기!!!*/
+	virtual void Attack(Actor* InTarget); /*!!!얘를 가상함수로 만들어서 Enemy랑 Player랑 따로 구현해야 하는지 고민해보기!!!*/
 
 	/// <summary>
 	/// 지정된 피해량만큼 본인에게 피해를 입힙니다.

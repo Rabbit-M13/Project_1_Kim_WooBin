@@ -10,6 +10,10 @@ public:
 
 	}
 
-	void IsShoot(Actor* InTarget);
+	virtual void Attack(Actor* InTarget) override;
+	//void IsShoot(Actor* InTarget); // Attack 을 오버라이드 하면 굳이 필요 없음
+
+private:
+	
 };
 
