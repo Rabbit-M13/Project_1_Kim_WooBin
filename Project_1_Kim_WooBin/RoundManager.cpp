@@ -4,7 +4,7 @@
 void RoundManager::SetBulletRatio(int InMaxMagNumber) 
 {
 
-	switch (InMaxMagNumber) // 값이 5로 잘 받아져야 함
+	switch (InMaxMagNumber)
 	{
 	case 5:
 	{
@@ -90,6 +90,17 @@ void RoundManager::SetMagazine()
 	std::mt19937 gen(std::random_device{}());
 	std::shuffle(Magazine.begin(), Magazine.end(), gen);
 	
+}
+
+/// <summary>
+/// 플레이어들의 라이프 포인트가 모두 남았고, 라운드 별 최대 탄창을 모두 사용했을 때 라운드를 초기화 한다.
+/// </summary>
+void RoundManager::ResetRound()
+{
+	ResetMagazineIndex();
+	ClearMagazine();
+	SetBulletRatio(GetMaxMagNumber());
+	SetMagazine();
 }
 
 /// <summary>
