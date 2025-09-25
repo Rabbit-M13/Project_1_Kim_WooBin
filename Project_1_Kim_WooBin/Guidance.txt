@@ -11,7 +11,7 @@
         2. 상대에게 발사시 라이프 포인트 조정 후 상대 턴으로 넘어감
         3. 나에게 발사시 피격 여부에 따라 체력 조정 후 상태 턴 or 다시 나의 턴
     
-    ⇒ BattleShip의 JustSunk()처럼 bool JustGotShot();으로 턴 교체 여부 결정
+    ⇒ BattleShip의 JustSunk()처럼 bool JustGotShot();으로 턴 교체 여부 결정 예정
     
     ⇒ 상대방은 1/3확률로 본인에게 발포, 2/3확률로 플레이어에게 발포
     

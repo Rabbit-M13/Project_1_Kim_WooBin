@@ -17,7 +17,7 @@ int main()
 
     GameManager Game;
     Game.PlayDebug();
-
+    //Game.Play();
 
     return 0;
 }

@@ -17,13 +17,13 @@ public:
 	int CountSelfAttack = 0;
 
 	/// <summary>
-	/// 플레이어의 이름을 리턴한다.
+	/// (확인)플레이어의 이름을 리턴한다.
 	/// </summary>
 	/// <returns>플레이어의 이름</returns>
 	inline const std::string GetName() { return Name; }
 
 	/// <summary>
-	/// 플레이어의 이름을 입력 받는다.
+	/// (확인)플레이어의 이름을 입력 받는다.
 	/// </summary>
 	/// <param name="InName">Name에 저장할 플레이어의 이름</param>
 	
@@ -34,6 +34,9 @@ public:
 	inline const int GetCurrentHealth() { return CurrentHealth; }
 	// 체력을 임의 수치로 정할 일은 없을 것 같아서 Health의 setter는 구현 X => AddHealth로 대체(Item::Beer가 호출 예정)
 	// void SetCurrentHealth() {}
+
+	inline int AddCurrentHealth() { CurrentHealth++; }
+	// (Item::Beer가 호출 예정)
 
 	/// <summary>
 	/// 다음 라운드 진행시 현재 체력을 최대로 회복
@@ -62,7 +65,8 @@ public:
 	/// Target에게 공격하는 함수 || Actor::Enemy 또는 Actor::Player에서 'TakeDamage()' 호출
 	/// </summary>
 	/// <param name="InTarget">공격을 받는 대상</param>
-	virtual void Attack(Actor* InTarget); /*!!!얘를 가상함수로 만들어서 Enemy랑 Player랑 따로 구현해야 하는지 고민해보기!!!*/
+	void Attack(Actor* InTarget); /*!!!얘를 가상함수로 만들어서 Enemy랑 Player랑 따로 구현해야 하는지 고민해보기!!!*/
+	// 공포탄인지 실탄인지 확인이 필요함. // 무엇을 인수로 받아야할까?
 
 	/// <summary>
 	/// 지정된 피해량만큼 본인에게 피해를 입힙니다.

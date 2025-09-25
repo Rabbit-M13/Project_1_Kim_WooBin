@@ -9,7 +9,7 @@ void GameManager::Play()
 }
 
 // Only for Debug
-void GameManager::PlayDebug() /*!!!!!!!!!!  본인 Attack가능한지 테스트 하기  !!!!!!!!!!!*/
+void GameManager::PlayDebug()
 {
 	
 	//std::string InputPlayerName;
@@ -50,6 +50,7 @@ void GameManager::PlayDebug() /*!!!!!!!!!!  본인 Attack가능한지 테스트 하기  !!!
 
 	printf("Player GetCurrentHealth() : %d\n", pActorPlayer->GetCurrentHealth());
 
+	
 
 	delete pActorEnemy;
 	pActorEnemy = nullptr;

@@ -8,7 +8,7 @@ public:
 
 private:
 	// 최대 라운드 수
-	static constexpr int MaxRound = 3;
+	static constexpr int MaxRound = 2;
 
 	// 현재 게임 상태 출력(상대와 나의 남은 HP, 남은 탄약 수, 공격 결과)
 	void PrintGameState() const;
