@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Enemy.h"
+#include "RoundManager.h"
 
 void GameManager::Play()
 {
@@ -11,52 +12,52 @@ void GameManager::Play()
 // Only for Debug
 void GameManager::PlayDebug()
 {
+	//Actor* pActorPlayer = new APlayer("Player");
+	//Actor* pActorEnemy = new AEnemy("악마1");
+
+	RoundManager TestRound;
 	
-	//std::string InputPlayerName;
-	//printf("당신의 이름을 입력하세요 : ");
-	//std::cin >> InputPlayerName;
-
-	Actor* pActorPlayer = new APlayer("Player");
-	Actor* pActorEnemy = new AEnemy("악마1");
-
-	// Player 확인
-	//printf("GetName() : %s\n", pActorPlayer->GetName().c_str());
-	//printf("Player GetCurrentHealth() : %d\n", pActorPlayer->GetCurrentHealth());
-	//pActorPlayer->TakeDamage();
-	//pActorPlayer->TakeDamage();
-	//printf("TakeDamage()*2 실행 후 체력 : %d\n", pActorPlayer->GetCurrentHealth());
-	//pActorPlayer->SetCurrentHealthToMaxHealth();
-	//printf("SetCurrentHealthToMaxHealth() 실행 후 체력 : %d\n", pActorPlayer->GetCurrentHealth());
-
-	// Enemy 확인
-	printf("GetName() : %s\n", pActorEnemy->GetName().c_str());
-	printf("GetCurrentHealth() : %d\n", pActorEnemy->GetCurrentHealth());
-	//pActorEnemy->Attack(pActorPlayer);
-
-	int RandomTryCount = 1000000;
-	for (int i = 0; i < RandomTryCount; i++)
+	printf("0라운드\n");
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
+	TestRound.SetMagazine(); // 이게 안굴러감
+	printf("탄창의 장전 순서 : ");
+	for (int n : TestRound.GetMagazine())
 	{
-		pActorEnemy->Attack(pActorPlayer);
+		printf("%d ", n);
 	}
-	printf("Player Attacked Count : %d\n", pActorEnemy->CountPlayerAttack);
-	printf("Player Attacked Count : %d\n", pActorEnemy->CountSelfAttack);
+	printf("\n\n\n");
 
-	//pActorEnemy->TakeDamage();
-	//printf("TakeDamage() 실행 후 체력 : %d\n", pActorEnemy->GetCurrentHealth());
-	//pActorPlayer->Attack(pActorEnemy);
-	//printf("pActorPlayer->Attack(pActorEnemy) 실행 후 체력 : %d\n", pActorEnemy->GetCurrentHealth());
-	//pActorEnemy->SetCurrentHealthToMaxHealth();
-	//printf("SetCurrentHealthToMaxHealth() 실행 후 체력 : %d\n", pActorEnemy->GetCurrentHealth());
 
-	printf("Player GetCurrentHealth() : %d\n", pActorPlayer->GetCurrentHealth());
+	printf("1라운드\n");
+	TestRound.NextRound(); // 필요한 요소들 전부 초기화
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
+	printf("탄창의 장전 순서 : ");
+	TestRound.SetMagazine();
+	for (int n : TestRound.GetMagazine())
+	{
+		printf("%d ", n);
+	}
+	printf("\n\n\n");
 
-	
+	printf("2라운드\n");
+	TestRound.NextRound();
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
+	printf("탄창의 장전 순서 : ");
+	TestRound.SetMagazine();
+	for (int n : TestRound.GetMagazine())
+	{
+		printf("%d ", n);
+	}
+	printf("\n\n\n");
 
-	delete pActorEnemy;
-	pActorEnemy = nullptr;
 
-	delete pActorPlayer;
-	pActorPlayer = nullptr;
+
+
+	//delete pActorEnemy;
+	//pActorEnemy = nullptr;
+
+	//delete pActorPlayer;
+	//pActorPlayer = nullptr;
 }
 
 void GameManager::PrintGameState() const

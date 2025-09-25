@@ -1,5 +1,12 @@
-1. Bullet Pair 구현하기. MaxMag와 유기적으로 정해지게 하고 싶은데, 발상이 안따오른다.
-2. 돋보기를 사용할 수 있게 탄창이 들어가는 배열이나 벡터를 만들어야 한다.
-	=> Magazine = {0, 1, 1, 0, 1} 이런 식으로
-3. Attack 관련 함수 재작성 필요함
+1. std::vector<int> Magazine;를 이용해서 공포탄 판별하는 IsBlank()구현해서 돋보기가 인수로 받게 설정하자
+2. Attack 관련 함수 재작성 필요함
 	=> 실탄일 때만, TakeDamage() 호출하도록 수정
+	=> Enemy 클래스에서 오버로드한 거 저번 테스트처럼 객체 생성했을 때, 
+3. RoundManager::SetMagazine() 테스트 필요
+4. Round 전체를 초기화 하는 함수 구현할지 고민 일단 TestRound 먼저 해보고 결정
+5. Round 끝나면 clear해줘야함.
+
+(+). RoundManager 망가진거 수정
+
+
+(+). cls() => 화면 클리어 사용할 수 있으면 해보자

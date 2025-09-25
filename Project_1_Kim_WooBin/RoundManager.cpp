@@ -1,24 +1,15 @@
 #include "RoundManager.h"
-#include <random>
+#include <algorithm>
 
-void RoundManager::SetCurrentRound()
-{
-	CurrentRound++;
-}
-
-void RoundManager::SetMaxMagNumer()
-{	// 반드시 SetCurrentRound() 호출이 선행되어야 함
-	MaxMagNumber += CurrentRound;
-}
-
-void RoundManager::SetBlankBullet(int InMaxMagNumber)
+void RoundManager::SetBulletRatio(int InMaxMagNumber)
 {
 
 	switch (InMaxMagNumber)
 	{
 	case 5:
-		int TempOdd = rand() % 2;
-		if (TempOdd == 0)
+	{
+		int TempNumMag5 = rand() % 2;
+		if (TempNumMag5 == 0)
 		{
 			BlankBullet = 2;
 		}
@@ -27,27 +18,16 @@ void RoundManager::SetBlankBullet(int InMaxMagNumber)
 			BlankBullet = 3;
 		}
 		break;
+	}
 
 	case 6:
-		int TempEven = rand() % 3;
-		if (TempEven == 0)
+	{
+		int TempNumMag6 = rand() % 3;
+		if (TempNumMag6 == 0)
 		{
 			BlankBullet = 2;
 		}
-		else if (TempEven == 1)
-		{
-			BlankBullet = 3;
-		}
-		else
-		{
-			BlankBullet = 4;
-		}
-
-		break;
-
-	case 7:
-		int TempOdd = rand() % 2;
-		if (TempOdd == 0)
+		else if (TempNumMag6 == 1)
 		{
 			BlankBullet = 3;
 		}
@@ -58,10 +38,26 @@ void RoundManager::SetBlankBullet(int InMaxMagNumber)
 
 		break;
 	}
-}
 
-void RoundManager::SetLiveBullet()
-{
+	case 7:
+	{
+		int TempNumMag7 = rand() % 2;
+		if (TempNumMag7 == 0)
+		{
+			BlankBullet = 3;
+		}
+		else
+		{
+			BlankBullet = 4;
+		}
+
+		break;
+	}
+	default:
+		printf("\n\n\nError : Value Of InMaxMagNumber is Invalid\n\n\n");
+		break;
+	}
+
 	LiveBullet = MaxMagNumber - BlankBullet;
 }
 
@@ -75,35 +71,39 @@ int RoundManager::PeekNextChamber() const
 	return 0;
 }
 
-void RoundManager::SetMagazine(int InMaxMagNumber)
+void RoundManager::SetMagazine()
 {
-	// BlankBullet개수와 LiveBullet개수는 위의 함수로 정해졌음
-	switch (InMaxMagNumber)
+	int MagIndex = 0;
+	// BlankBullet과 LiveBullet 차례대로 개수만큼 삽입
+	for (MagIndex; MagIndex < GetMaxMagNumber(); MagIndex++)
 	{
-	case 5:
-		for (int i = 0; i < MaxMagNumber; i++)
+		if (MagIndex >= GetBlankBullet())
 		{
-
+				Magazine.push_back(1);
+			continue;
 		}
 
-		break;
-
-	case 6:
-
-
-		break;
-
-	case 7:
-
-
-		break;
+		Magazine.push_back(0);
 	}
 
+	// shuffle 알고리즘으로 순서 랜덤으로 섞음
+	std::mt19937 gen(std::random_device{}());
+	std::shuffle(Magazine.begin(), Magazine.end(), gen);
+	
+}
 
-	for (int i = 0; i < MaxMagNumber; i++)
-	{
-
-	}
+/// <summary>
+/// 다음 라운드 시작시 호출. 필요한 변수를 모두 초기화 한다.
+/// [CurrentRound, MaxMagNumber, SetBulletRatio, MagazineIndex, Magazine]
+/// </summary>
+void RoundManager::NextRound()
+{
+	SetCurrentRound();
+	ResetMagazineIndex();
+	ClearMagazine();
+	SetMaxMagNumber();
+	SetBulletRatio(GetMaxMagNumber());
+	SetMagazine();
 }
 
 /* 가능한 Bullet Pair */
