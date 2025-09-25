@@ -16,10 +16,10 @@ void GameManager::PlayDebug()
 	//Actor* pActorEnemy = new AEnemy("악마1");
 
 	RoundManager TestRound;
-	
+
 	printf("0라운드\n");
+	TestRound.SetMagazine();
 	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
-	TestRound.SetMagazine(); // 이게 안굴러감
 	printf("탄창의 장전 순서 : ");
 	for (int n : TestRound.GetMagazine())
 	{
@@ -32,7 +32,6 @@ void GameManager::PlayDebug()
 	TestRound.NextRound(); // 필요한 요소들 전부 초기화
 	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
 	printf("탄창의 장전 순서 : ");
-	TestRound.SetMagazine();
 	for (int n : TestRound.GetMagazine())
 	{
 		printf("%d ", n);
@@ -43,7 +42,6 @@ void GameManager::PlayDebug()
 	TestRound.NextRound();
 	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", TestRound.GetBlankBullet(), TestRound.GetLiveBullet());
 	printf("탄창의 장전 순서 : ");
-	TestRound.SetMagazine();
 	for (int n : TestRound.GetMagazine())
 	{
 		printf("%d ", n);

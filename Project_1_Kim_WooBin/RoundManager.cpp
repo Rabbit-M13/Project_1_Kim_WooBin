@@ -1,10 +1,10 @@
 #include "RoundManager.h"
 #include <algorithm>
 
-void RoundManager::SetBulletRatio(int InMaxMagNumber)
+void RoundManager::SetBulletRatio(int InMaxMagNumber) 
 {
 
-	switch (InMaxMagNumber)
+	switch (InMaxMagNumber) // 값이 5로 잘 받아져야 함
 	{
 	case 5:
 	{
