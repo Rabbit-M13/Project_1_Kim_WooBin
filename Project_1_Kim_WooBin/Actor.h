@@ -84,13 +84,20 @@ public:
 	/// <returns>false면 죽었다.</returns>
 	inline bool IsAlive() const { return CurrentHealth > 0; }
 
+	// 실탄을 상대에 맞췄는지 여부 확인
+	inline bool GetBullseye() const { return Bullseye; }
 
+	// Bullseye 값을 1로 설정(상대 명중)
+	inline void SetBullseye() { Bullseye = 1; }
 
+	// Bullseye 값 다시 0으로 설정
+	inline void ResetBullseye() { Bullseye = 0; }
 
 protected: // 자식 클래스들이 사용 필요
 	std::string Name = "Default Actor";
 	int CurrentHealth = 3;
 	int MaxHealth = 3; // 라운드 별 MaxHealth 값 변동 예정 R1 = 3, R2 = 4, R3 = 5
 	int AttackPower = 1; // Item::GunPowder로 해당 턴에만 1증가 || Max 2
+	bool Bullseye = 0; // 실탄을 상대에 맞췄는지 여부. 본인 턴 한 번 더 진행
 };
 

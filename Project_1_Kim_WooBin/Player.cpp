@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "RoundManager.h"
 #include <vector>
 #include <iostream>
 
@@ -51,20 +52,35 @@ bool APlayer::SetShootTarget()
 	return ChooseTarget;
 }
 
-void APlayer::Attack(Actor* InTarget, bool InIsBlank)
+void APlayer::Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound)
 {
+	if (InRound.GetMagazineIndex() == InRound.GetMaxMagNumber())
+	{
+		InRound.ResetMagazineIndex();
+		InRound.SetMagazine();
+		// Debug
+		printf("\n\n재장전 된 탄창의 장전 순서 : ");
+		for (int n : InRound.GetMagazine())
+		{
+			printf("%d ", n);
+		}
+		printf("\n\n");
+	}
+
 	if (SetShootTarget()) // 0면 상대, 1이면 나를 타켓으로 설정 || default = 0;
 	{
 		if (InIsBlank)
 		{
 			printf("총구가 본인을 향합니다.\n");
 			printf("찰칵....\n");
+			SetBullseye();
 		}
 		else
 		{
 			printf("총구가 본인을 향합니다.\n");
 			printf("Baaang!!!!\n");
 			this->TakeDamage();
+			ResetBullseye();
 		}
 	}
 	else
@@ -73,14 +89,17 @@ void APlayer::Attack(Actor* InTarget, bool InIsBlank)
 		{
 			printf("총구가 상대를 향합니다.\n");
 			printf("찰칵....\n");
+			ResetBullseye();
 		}
 		else
 		{
 			printf("총구가 상대를 향합니다.\n");
 			printf("Baaang!!!!\n");
 			InTarget->TakeDamage();
+			SetBullseye();
 		}
 	}
+	InRound.IncreaseMagazineIndex();
 }
 
 

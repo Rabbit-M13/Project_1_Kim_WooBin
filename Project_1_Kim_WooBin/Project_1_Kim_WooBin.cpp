@@ -16,8 +16,8 @@ int main()
     srand(time(0));
 
     GameManager Game;
-    Game.PlayDebug();
-    //Game.Play();
+    //Game.PlayDebug();
+    Game.Play();
 
     return 0;
 }

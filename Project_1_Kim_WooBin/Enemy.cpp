@@ -1,8 +1,23 @@
 #include "Enemy.h"
+#include "RoundManager.h"
 #include <random>
 
-void AEnemy::Attack(Actor* InTarget, bool InIsBlank ,float InProbability) // GameManager에서 GetLiveBulletProbability();로 받아야함
+void AEnemy::Attack(Actor* InTarget, bool InIsBlank ,float InProbability, RoundManager& InRound) // GameManager에서 GetLiveBulletProbability();로 받아야함
 {
+	printf("<<상대방의 턴>>\n\n");
+	if (InRound.GetMagazineIndex() == InRound.GetMaxMagNumber())
+	{
+		InRound.ResetMagazineIndex();
+		InRound.SetMagazine();
+		// Debug
+		printf("\n\n재장전 된 탄창의 장전 순서 : \n\n");
+		for (int n : InRound.GetMagazine())
+		{
+			printf("%d ", n);
+		}
+		printf("\n\n");
+	}
+
 	if (InIsBlank == false)
 	{
 		if (InProbability >= 1)
@@ -10,14 +25,14 @@ void AEnemy::Attack(Actor* InTarget, bool InIsBlank ,float InProbability) // Gam
 			printf("총구가 당신을 향합니다.\n");
 			printf("Baaang!!!!\n"); // 추후에 아스키 아트로 대체 고려
 			InTarget->TakeDamage();
-			//CountPlayerAttack++;
+			SetBullseye();
 		}
 		else
 		{
 			printf("총구가 본인을 향합니다.\n");
 			printf("Baaang!!!!\n");
 			this->TakeDamage();
-			//CountSelfAttack++;
+			ResetBullseye();
 		}
 	}
 	else
@@ -26,15 +41,15 @@ void AEnemy::Attack(Actor* InTarget, bool InIsBlank ,float InProbability) // Gam
 		{
 			printf("총구가 당신을 향합니다.\n");
 			printf("찰칵....\n");
-			//CountPlayerAttack++;
+			ResetBullseye();
 		}
 		else
 		{
 			printf("총구가 본인을 향합니다.\n");
 			printf("찰칵....\n");
-			//CountSelfAttack++;
+			SetBullseye();
 		}
 	}
-
+	InRound.IncreaseMagazineIndex();
 	
 }

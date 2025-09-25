@@ -6,7 +6,121 @@
 
 void GameManager::Play()
 {
+	APlayer* pPlayer = new APlayer("Player");
+	AEnemy* pEnemy = new AEnemy("악마1");
+	RoundManager GameRound;
 
+	printf("===게임 시작===\n\n\n");
+
+	// Round 0
+	printf("첫 번째 라운드\n\n");
+	GameRound.ResetRound();
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
+	printf("탄창의 장전 순서 : ");
+	for (int n : GameRound.GetMagazine())
+		{
+			printf("%d ", n);
+		}
+	printf("\n");
+	while (pPlayer->IsAlive() || pEnemy->IsAlive())
+	{
+		// 게임 진행되는 공간
+
+		do
+		{
+			pPlayer->Attack(pEnemy, GameRound.IsBlank(), GameRound);
+		} while (pPlayer->GetBullseye());
+		
+		do
+		{
+			pEnemy->Attack(pPlayer, GameRound.IsBlank(), GameRound.GetLiveBulletProbability(), GameRound);
+		} while (pEnemy->GetBullseye());
+
+	}
+	if (!pPlayer->IsAlive())
+	{
+		printf("Game Over...\n운명의 여신은 당신의 편이 아니었습니다...\n");
+	}
+	else
+	{
+		printf("라운드 승리!!\n다음 라운드도 살아남을 수 있을까요...?\n");
+	}
+
+
+	// Round 1
+	printf("두 번째 라운드\n\n");
+	GameRound.NextRound();
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
+	printf("탄창의 장전 순서 : ");
+	for (int n : GameRound.GetMagazine())
+	{
+		printf("%d ", n);
+	}
+	printf("\n");
+	while (pPlayer->IsAlive() || pEnemy->IsAlive())
+	{
+		// 게임 진행되는 공간
+
+		do
+		{
+			pPlayer->Attack(pEnemy, GameRound.IsBlank(), GameRound);
+		} while (pPlayer->GetBullseye());
+
+		do
+		{
+			pEnemy->Attack(pPlayer, GameRound.IsBlank(), GameRound.GetLiveBulletProbability(), GameRound);
+		} while (pEnemy->GetBullseye());
+
+	}
+	if (!pPlayer->IsAlive())
+	{
+		printf("Game Over...\n운명의 여신은 당신의 편이 아니었습니다...\n");
+	}
+	else
+	{
+		printf("라운드 승리!!\n다음 라운드도 살아남을 수 있을까요...?\n");
+	}
+	
+	
+	// Round 2
+	printf("마지막 라운드\n\n");
+	GameRound.NextRound();
+	printf("공포탄 개수 : %d\n실탄 개수 : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
+	printf("탄창의 장전 순서 : ");
+	for (int n : GameRound.GetMagazine())
+	{
+		printf("%d ", n);
+	}
+	printf("\n");
+	while (pPlayer->IsAlive() || pEnemy->IsAlive())
+	{
+		// 게임 진행되는 공간
+
+		do
+		{
+			pPlayer->Attack(pEnemy, GameRound.IsBlank(), GameRound);
+		} while (pPlayer->GetBullseye());
+
+		do
+		{
+			pEnemy->Attack(pPlayer, GameRound.IsBlank(), GameRound.GetLiveBulletProbability(), GameRound);
+		} while (pEnemy->GetBullseye());
+
+	}
+	if (!pPlayer->IsAlive())
+	{
+		printf("Game Over...\n운명의 여신은 당신의 편이 아니었습니다...\n");
+	}
+	else
+	{
+		printf("축하합니다!!! 당신은 최종 승리하였습니다!!\n운명의 여신은 당신의 편이었습니다!\n");
+	}
+
+	// !!중요!! Player, Enemy 메모리 해제
+	delete pEnemy;
+	pEnemy = nullptr;
+	delete pPlayer;
+	pPlayer = nullptr;
 }
 
 // Only for Debug
@@ -87,20 +201,20 @@ void GameManager::PlayDebug()
 	//}
 
 	// Enemy, Player 클래스 테스트
-	{
+	/*{
 		APlayer* pActorPlayer = new APlayer("Player");
 		AEnemy* pActorEnemy = new AEnemy("악마1");
 
 		pActorEnemy->Attack(pActorPlayer, true, 1.5f);
-		pActorPlayer->Attack(pActorEnemy, true);
-		pActorPlayer->Attack(pActorEnemy, false);
+		pActorPlayer->Attack(pActorEnemy, true, TestRound);
+		pActorPlayer->Attack(pActorEnemy, false, TestRound);
 
 		delete pActorEnemy;
 		pActorEnemy = nullptr;
 
 		delete pActorPlayer;
 		pActorPlayer = nullptr;
-	}
+	}*/
 
 }
 
