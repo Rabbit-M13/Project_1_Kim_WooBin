@@ -23,6 +23,11 @@ public:
 
 	// 공포탄 개수 리턴
 	inline int GetBlankBullet() const { return BlankBullet; }
+
+	/// <summary>
+	/// 공포탄과 실탄 개수 설정
+	/// </summary>
+	/// <param name="InMaxMagNumber">최대 탄약수</param>
 	void SetBulletRatio(int InMaxMagNumber);
 
 	inline int GetLiveBullet() const { return LiveBullet; }
@@ -33,12 +38,19 @@ public:
 
 	inline void ResetMagazineIndex() { MagazineIndex = 0; }
 
-	inline std::vector<int> GetMagazine() const { return Magazine; }
+	inline const std::vector<int>& GetMagazine() const { return Magazine; }
 	
 	/// <summary>
 	/// GetBlankBullet()으로 공포탄 개수를 받아 랜덤으로 실탄과 공포탄 배치, 탄창 수는 GetMaxMagNumber()로 받아야 함
 	/// </summary>
 	void SetMagazine();
+
+	/// <summary>
+	/// MagazineIndex 변수를 1만큼 증가시킵니다.
+	/// </summary>
+	inline void IncreaseMagazineIndex() { MagazineIndex++; }
+
+	inline int GetMagazineIndex() const { return MagazineIndex; }
 
 	/// <summary>
 	/// 탄창을 비운다.
@@ -57,7 +69,6 @@ public:
 	void NextRound();
 
 
-// 어떻게 사용될지 모르니 일단 public으로 open
 private:
 	int CurrentRound = 0; // (현재 라운드 int) UpTo 3 || Round 통과 시 ++
 	int MaxMagNumber = 5; // (탄창 최대 탄약 수 int) UpTo 7 || Round 통과 시 += CurrentRound;

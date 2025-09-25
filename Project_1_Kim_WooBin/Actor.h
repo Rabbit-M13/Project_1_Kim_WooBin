@@ -66,7 +66,7 @@ public:
 	/// </summary>
 	/// <param name="InTarget">공격을 받는 대상</param>
 	void Attack(Actor* InTarget); /*!!!얘를 가상함수로 만들어서 Enemy랑 Player랑 따로 구현해야 하는지 고민해보기!!!*/
-	// 공포탄인지 실탄인지 확인이 필요함. // 무엇을 인수로 받아야할까?
+	// 공포탄인지 실탄인지 확인이 필요함. // 무엇을 인수로 받아야할까? => InIsBlank를 인수로 받는다
 
 	/// <summary>
 	/// 지정된 피해량만큼 본인에게 피해를 입힙니다.
@@ -92,6 +92,5 @@ protected: // 자식 클래스들이 사용 필요
 	int CurrentHealth = 3;
 	int MaxHealth = 3; // 라운드 별 MaxHealth 값 변동 예정 R1 = 3, R2 = 4, R3 = 5
 	int AttackPower = 1; // Item::GunPowder로 해당 턴에만 1증가 || Max 2
-
 };
 

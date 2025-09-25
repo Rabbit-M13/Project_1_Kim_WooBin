@@ -63,7 +63,7 @@ void RoundManager::SetBulletRatio(int InMaxMagNumber)
 
 bool RoundManager::IsBlank() const
 {
-	return false;
+	return Magazine[MagazineIndex] == 0;
 }
 
 int RoundManager::PeekNextChamber() const
