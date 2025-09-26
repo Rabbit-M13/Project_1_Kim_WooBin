@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Guidance.txt" />
-    <Text Include="README.md" />
     <Text Include="ToDoList.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -70,5 +69,8 @@
     <ClInclude Include="Items.h">
       <Filter>Items</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

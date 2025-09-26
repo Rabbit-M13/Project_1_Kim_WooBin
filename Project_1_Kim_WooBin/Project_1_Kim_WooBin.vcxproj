@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Guidance.txt" />
-    <Text Include="README.md" />
     <Text Include="ToDoList.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +145,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RoundManager.h" />
     <ClInclude Include="Store.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
