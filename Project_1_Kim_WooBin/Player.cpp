@@ -50,6 +50,21 @@ void APlayer::UseItem(Actor* InTarget, const std::string& InItem) // AddAttackPo
 	}
 }
 
+void APlayer::ShowInventory() const
+{
+	printf("[ ");
+	bool first = true;
+	for (const auto& Index : Inventory)
+	{
+		if (!first) {
+			printf(" | ");
+		}
+		printf("%s : %d", Index.first.c_str(), Index.second);
+		first = false;
+	}
+	printf(" ]\n");
+}
+
 bool APlayer::SetShootTarget()
 {
 	bool ChooseTarget = 0;

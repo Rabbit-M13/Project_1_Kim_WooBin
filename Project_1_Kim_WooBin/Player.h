@@ -44,6 +44,10 @@ public:
 	
 	void Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound);
 
+	std::unordered_map<std::string, int> GetInventory() { return Inventory; }
+
+	void ShowInventory() const;
+
 
 
 private:

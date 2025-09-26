@@ -6,8 +6,6 @@ void Store::ShoppingTime(APlayer* InPlayer, Items* InItems)
 {
 	// 플레이어의 현재 골드 받아와야 함
 
-	
-
 	int PlayerItemChoice = 0;
 
 	while (PlayerItemChoice != 4)
@@ -29,28 +27,87 @@ void Store::ShoppingTime(APlayer* InPlayer, Items* InItems)
 			continue;
 		}
 
+		if (PlayerItemChoice == 4) {
+			printf("\'충분히 둘러본거 같다...\'\n");
+			break;
+		}
+
 		switch (PlayerItemChoice)
 		{
-		case 1:
-			if (PlayerCurrentGold < InItems->GetGunpowderItemPrice())
+		case 1: // 화약
 			{
-				printf("소지한 골드가 부족합니다!\n");
-				break;
-			}
-			// 플레이어의 인벤토리 맵을 미리 초기화 해둬야 하고, 항목이 아예 삭제되지 않게 해야함.
-			// Key(아이템 이름)값을 받아와서 Value가 MaxItemCount를 초과하지 않는지 체크해야함
-			if (InPlayer.)
-			{
-				printf("소지한 골드가 부족합니다!\n");
-				break;
-			}
-			printf("화약 1개를 구매했습니다!\n");
-			InPlayer->AddItem("화약");
-			printf("현재 소지하고 있는 아이템\n");
-			
-			break;
+				if (PlayerCurrentGold < InItems->GetGunpowderItemPrice())
+				{
+					printf("소지한 골드가 부족합니다!\n");
+					break;
+				}
 
-		case 2:
+				// 플레이어의 인벤토리 맵을 미리 초기화 해둬야 하고, 항목이 아예 삭제되지 않게 해야함.
+				// Key(아이템 이름)값을 받아와서 Value가 MaxItemCount를 초과하지 않는지 체크해야함
+				if (InPlayer->GetInventory()["화약"] >= InItems->GetMaxItemCount())
+				{
+					InPlayer->GetInventory()["화약"] = 3;
+					printf("최대 한도를 소지 중입니다!\n");
+					break;
+				}
+
+				printf("화약 1개를 구매했습니다!\n");
+				InPlayer->AddItem("화약");
+				printf("현재 소지하고 있는 아이템\n");
+				InPlayer->ShowInventory();
+
+				break;
+			}
+
+		case 2: // 맥주
+			{
+				if (PlayerCurrentGold < InItems->GetBeerItemPrice())
+				{
+					printf("소지한 골드가 부족합니다!\n");
+					break;
+				}
+
+				// 플레이어의 인벤토리 맵을 미리 초기화 해둬야 하고, 항목이 아예 삭제되지 않게 해야함.
+				// Key(아이템 이름)값을 받아와서 Value가 MaxItemCount를 초과하지 않는지 체크해야함
+				if (InPlayer->GetInventory()["맥주"] >= InItems->GetMaxItemCount())
+				{
+					InPlayer->GetInventory()["맥주"] = 3;
+					printf("최대 한도를 소지 중입니다!\n");
+					break;
+				}
+
+				printf("맥주 1개를 구매했습니다!\n");
+				InPlayer->AddItem("맥주");
+				printf("현재 소지하고 있는 아이템\n");
+				InPlayer->ShowInventory();
+
+				break;
+			}
+
+		case 3: // 수상한 안경
+			{
+				if (PlayerCurrentGold < InItems->GetVisionGlassItemPrice())
+				{
+					printf("소지한 골드가 부족합니다!\n");
+					break;
+				}
+
+				// 플레이어의 인벤토리 맵을 미리 초기화 해둬야 하고, 항목이 아예 삭제되지 않게 해야함.
+				// Key(아이템 이름)값을 받아와서 Value가 MaxItemCount를 초과하지 않는지 체크해야함
+				if (InPlayer->GetInventory()["수상한 안경"] >= InItems->GetMaxItemCount())
+				{
+					InPlayer->GetInventory()["수상한 안경"] = 3;
+					printf("최대 한도를 소지 중입니다!\n");
+					break;
+				}
+
+				printf("수상한 안경 1개를 구매했습니다!\n");
+				InPlayer->AddItem("수상한 안경");
+				printf("현재 소지하고 있는 아이템\n");
+				InPlayer->ShowInventory();
+
+				break;
+			}
 
 		}
 	}

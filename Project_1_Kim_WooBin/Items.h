@@ -19,9 +19,10 @@ public:
 	inline const int GetGunpowderItemPrice() const { return GunpowderPrice; }
 	inline const int GetBeerItemPrice() const { return BeerPrice; }
 	inline const int GetVisionGlassItemPrice() const { return VisionGlassPrice; }
+	inline const int GetMaxItemCount() const { return MaxItemCount; }
 	//inline void SeItemPrice(int InItemPrice) { Price = InItemPrice; }
 
-	inline void BuyItem(APlayer* InPlayer); // 플레이어 객체를 받아서 gold 조정해야할 거 같음
+	//inline void BuyItem(APlayer* InPlayer); // 플레이어 객체를 받아서 gold 조정해야할 거 같음
 	
 	// 현재 아이템 수량 가지고 오기
 	//inline const int GetCurrentAmount() const { return ItemAmount; } // Player가 가진 맵에서 처리
