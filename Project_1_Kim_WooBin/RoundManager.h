@@ -21,6 +21,9 @@ public:
 	// Enemy Class에서 받아서 사용해야함
 	inline float GetLiveBulletProbability() const { return LiveBulletProbability; }
 
+	// Attack() 함수 마지막에 항상 호출해야함
+	void SetLiveBulletProbability();
+
 	// 공포탄 개수 리턴
 	inline int GetBlankBullet() const { return BlankBullet; }
 
@@ -49,7 +52,16 @@ public:
 	/// MagazineIndex 변수를 1만큼 증가시킵니다.
 	/// </summary>
 	inline void IncreaseMagazineIndex() { MagazineIndex++; }
+	
+	/// <summary>
+	/// 탄창의 인덱스가 마지막을 가리키면 탄창을 재장전
+	/// </summary>
+	void ReloadMagazine();
 
+	/// <summary>
+	/// 탄창의 현재 인덱스 리턴
+	/// </summary>
+	/// <returns>int MagazineIndex</returns>
 	inline int GetMagazineIndex() const { return MagazineIndex; }
 
 	/// <summary>

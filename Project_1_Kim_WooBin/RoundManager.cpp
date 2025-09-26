@@ -1,7 +1,37 @@
 #include "RoundManager.h"
 #include <algorithm>
+#include <vector>
 
-void RoundManager::SetBulletRatio(int InMaxMagNumber) 
+
+void RoundManager::SetLiveBulletProbability()
+{
+	int LeftMagIndex = GetMagazineIndex();
+	int LeftBlank = 0;
+	int LeftLive = 0;
+
+	for (auto Iter = Magazine.begin() + LeftMagIndex; Iter != Magazine.end(); Iter++)
+	{
+		if (*Iter == 0)
+		{
+			LeftBlank++;
+		}
+		else
+		{
+			LeftLive++;
+		}
+	}
+
+	if (LeftBlank == 0)
+	{
+		LiveBulletProbability = LeftLive; // 분모 0 피하기
+	}
+	else
+	{
+		LiveBulletProbability = LeftLive / LeftBlank;
+	}
+}
+
+void RoundManager::SetBulletRatio(int InMaxMagNumber)
 {
 
 	switch (InMaxMagNumber)
@@ -89,6 +119,23 @@ void RoundManager::SetMagazine()
 	// shuffle 알고리즘으로 순서 랜덤으로 섞음
 	std::mt19937 gen(std::random_device{}());
 	std::shuffle(Magazine.begin(), Magazine.end(), gen);
+	
+}
+void RoundManager::ReloadMagazine()
+{
+	if (MagazineIndex == MaxMagNumber)
+	{
+		ClearMagazine();
+		ResetMagazineIndex();
+		SetMagazine();
+		// Debug
+		printf("\n\n재장전 된 탄창의 장전 순서 : ");
+		for (int n : GetMagazine())
+		{
+			printf("%d ", n);
+		}
+		printf("\n\n");
+	}
 	
 }
 

@@ -13,7 +13,8 @@ public:
 
 	}
 
-	void Attack(Actor* InTarget, bool InIsBlank, float InProbability, RoundManager& InRound);
+	void Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound); // InProbability 인수로 받을 필요가 없나...? 그럼 처음 판단은 어떻게 해..
+																		 // Attack 함수 내부에서 설정하고 받아서 사용하면 된다.
 	//void IsShoot(Actor* InTarget); // Attack 을 오버라이드 하면 굳이 필요 없음
 	
 

@@ -54,18 +54,23 @@ bool APlayer::SetShootTarget()
 
 void APlayer::Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound)
 {
-	if (InRound.GetMagazineIndex() == InRound.GetMaxMagNumber())
-	{
-		InRound.ResetMagazineIndex();
-		InRound.SetMagazine();
-		// Debug
-		printf("\n\n재장전 된 탄창의 장전 순서 : ");
-		for (int n : InRound.GetMagazine())
-		{
-			printf("%d ", n);
-		}
-		printf("\n\n");
-	}
+	printf("<<당신의 턴>>\n\n");
+
+	// 탄창 모두 소모 시 재장전 => ReloadMagazine()으로 따로 구현하고 Attack() 전에 호출
+	//if (InRound.GetMagazineIndex() == InRound.GetMaxMagNumber())
+	//{
+	//	InRound.ClearMagazine();
+	//	InRound.ResetMagazineIndex();
+	//	InRound.SetMagazine();
+	//	// Debug
+	//	printf("\n\n재장전 된 탄창의 장전 순서 : ");
+	//	for (int n : InRound.GetMagazine())
+	//	{
+	//		printf("%d ", n);
+	//	}
+	//	printf("\n\n");
+	//}
+	
 
 	if (SetShootTarget()) // 0면 상대, 1이면 나를 타켓으로 설정 || default = 0;
 	{

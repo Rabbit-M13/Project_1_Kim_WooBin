@@ -29,9 +29,9 @@ public:
 	
 	
 	
-	inline const void SetCurrentHealth(std::string InName) { Name = InName; }
+	inline const void SetName(std::string InName) { Name = InName; }
 
-	inline const int GetCurrentHealth() { return CurrentHealth; }
+	inline int GetCurrentHealth() const { return CurrentHealth; }
 	// 체력을 임의 수치로 정할 일은 없을 것 같아서 Health의 setter는 구현 X => AddHealth로 대체(Item::Beer가 호출 예정)
 	// void SetCurrentHealth() {}
 
@@ -50,6 +50,17 @@ public:
 	/// 다음 라운드 진행시 최대 체력을 늘린다. || R1 = 3, R2 = 4, R3 = 5
 	/// </summary>
 	inline void ResetMaxHealth() { MaxHealth++; }
+
+	/// <summary>
+	/// 현재 라운드 최대 체력 리턴(int)
+	/// </summary>
+	/// <returns></returns>
+	inline int GetMaxHealth() const { return MaxHealth; }
+
+	/// <summary>
+	/// Actor 본인과 상대 Actor의 Status(MaxHealth, CurrentHealth, AttackPower)를 표시한다. 매 Attack에 호출될 예정 / 플레이어 턴 공격전 한 번만 표시할 예정
+	/// </summary>
+	void DisplayStatus(Actor* InActor) const;
 
 	/// <summary>
 	/// 공격력 1증가(Item::GunPowder가 호출) | 반드시 ResetAttackPower()호출 필요
@@ -92,6 +103,11 @@ public:
 
 	// Bullseye 값 다시 0으로 설정
 	inline void ResetBullseye() { Bullseye = 0; }
+
+	/// <summary>
+	/// 라운드 넘어갈시 Actor들의 Status를 초기화 하는 함수 [MaxHealth, CurrentHealth, AttackPower	]
+	/// </summary>
+	void ResetActorStatus();
 
 protected: // 자식 클래스들이 사용 필요
 	std::string Name = "Default Actor";
