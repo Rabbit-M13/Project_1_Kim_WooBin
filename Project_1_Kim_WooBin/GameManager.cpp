@@ -417,7 +417,7 @@ void GameManager::SetIsGameAlive(APlayer* InPlayer)
 void GameManager::RestartGame()
 {
 	char InRestartChar = 'a';
-	printf("게임을 재시작할까요??\n재시작 - R || 게임 종료 - X");
+	printf("게임을 재시작할까요??\n재시작 - R || 게임 종료 - X\n입력 : ");
 	
 
 	while (1)
