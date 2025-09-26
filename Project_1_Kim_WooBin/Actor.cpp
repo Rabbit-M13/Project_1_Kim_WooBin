@@ -2,7 +2,7 @@
 
 void Actor::DisplayStatus(Actor* InActor) const
 {
-	printf("============\n나의 체력: %d / %d\n상대 체력: %d / %d\n============\n",
+	printf("\n\n============\n나의 체력: %d / %d\n상대 체력: %d / %d\n============\n\n",
 		this->GetCurrentHealth(), this->GetMaxHealth(), InActor->GetCurrentHealth(), InActor->GetMaxHealth());
 }
 

@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "RoundManager.h"
+#include "Store.h"
+#include "Items.h"
 
 //void GameManager::Run() // ¿ì¼± °ÔÀÓ ¿Ï¼ºÇÏ°í ¸¸µéÀÚ.
 //{
@@ -27,7 +29,7 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		printf("===°ÔÀÓ ½ÃÀÛ===\n\n\n");
 
 		// Round 0
-		printf("Ã¹ ¹øÂ° ¶ó¿îµå\n\n");
+		printf("\n\n[Ã¹ ¹øÂ° ¶ó¿îµå]\n\n");
 		GameRound.ResetRound();
 		printf("°øÆ÷Åº °³¼ö : %d\n½ÇÅº °³¼ö : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
 		printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
@@ -99,18 +101,23 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		}
 		else
 		{
-			printf("¶ó¿îµå ½Â¸®!!\n´ÙÀ½ ¶ó¿îµåµµ »ì¾Æ³²À» ¼ö ÀÖÀ»±î¿ä...?\n");
-			printf("[°ñµå º¸»ó +120]\n");
+			printf("\n\n¶ó¿îµå ½Â¸®!!\n´ÙÀ½ ¶ó¿îµåµµ »ì¾Æ³²À» ¼ö ÀÖÀ»±î¿ä...?\n");
+			printf("[°ñµå º¸»ó +120]\n\n");
 			GameRound.RoundClearReward(pPlayer);
 		}
 
 
 		/*»óÁ¡ ÅÏ*/
-
-
+		Store* pStore = new Store();
+		Items* pItems = new Items();
+		pStore->StoreOpen();
+		pStore->ShoppingTime(pPlayer, pItems);
+		pStore->StoreClose();
+		// Items ÇØÁ¦´Â °ÔÀÓ Á¾·á½Ã¿¡ ÇØÁ¦ÇÏ¸é µÈ´Ù.
+		
 
 		// Round 1
-		printf("µÎ ¹øÂ° ¶ó¿îµå\n\n");
+		printf("\n\n[µÎ ¹øÂ° ¶ó¿îµå]\n\n");
 		GameRound.NextRound();
 		pPlayer->ResetActorStatus(); // RoundManager::NextRound()¿¡ ³ÖÀ¸·Á´Ù°¡ ¿ªÇÒ ±¸ºÐ ¸íÈ®ÇÏ°Ô ºÐ¸®ÇÏ±â À§ÇØ µû·Î ±¸Çö ¹× È£Ãâ || GameManager¿¡¼­ ÀÎ¼ö·Î ¹Þ¾Æ¼­ ½ÇÇàÇÏ°Ô ÅëÇÕÇØµµ µÉ °Å °°À½
 		pEnemy->ResetActorStatus();
@@ -176,6 +183,10 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		if (!pPlayer->IsAlive())
 		{
 			printf("Game Over...\n¿î¸íÀÇ ¿©½ÅÀº ´ç½ÅÀÇ ÆíÀÌ ¾Æ´Ï¾ú½À´Ï´Ù...\n");
+			delete pItems;
+			pItems = nullptr;
+			delete pStore;
+			pStore = nullptr;
 			delete pEnemy;
 			pEnemy = nullptr;
 			delete pPlayer;
@@ -191,10 +202,12 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 
 
 		/*»óÁ¡ ÅÏ*/
-
+		pStore->StoreOpen();
+		pStore->ShoppingTime(pPlayer, pItems);
+		pStore->StoreClose();
 
 		// Round 2
-		printf("¸¶Áö¸· ¶ó¿îµå\n\n");
+		printf("\n\n[¸¶Áö¸· ¶ó¿îµå]\n\n");
 		GameRound.NextRound();
 		pPlayer->ResetActorStatus();
 		pEnemy->ResetActorStatus();
@@ -260,6 +273,10 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		if (!pPlayer->IsAlive())
 		{
 			printf("Game Over...\n¿î¸íÀÇ ¿©½ÅÀº ´ç½ÅÀÇ ÆíÀÌ ¾Æ´Ï¾ú½À´Ï´Ù...\n");
+			delete pItems;
+			pItems = nullptr;
+			delete pStore;
+			pStore = nullptr;
 			delete pEnemy;
 			pEnemy = nullptr;
 			delete pPlayer;
@@ -273,6 +290,10 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 
 
 		// !!Áß¿ä!! Player, Enemy ¸Þ¸ð¸® ÇØÁ¦
+		delete pItems;
+		pItems = nullptr;
+		delete pStore;
+		pStore = nullptr;
 		delete pEnemy; // »ó´ë¹æÀ» ´Ê°Ô »ý¼ºÇßÀ¸´Ï±î, ¸ÕÀú ÇØÁ¦
 		pEnemy = nullptr;
 		delete pPlayer;

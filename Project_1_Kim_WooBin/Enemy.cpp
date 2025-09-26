@@ -20,14 +20,14 @@ void AEnemy::Attack(Actor* InTarget, bool InIsBlank , RoundManager& InRound) // 
 		{
 			printf("총구가 당신을 향합니다.\n");
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1초 동안 대기
-			printf("찰칵....\n");
+			printf("찰칵....\n\n");
 			ResetBullseye();
 		}
 		else
 		{
 			printf("총구가 당신을 향합니다.\n");
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 1초 동안 대기
-			printf("Baaang!!!!\n"); // 추후에 아스키 아트로 대체 고려
+			printf("Baaang!!!!\n\n"); // 추후에 아스키 아트로 대체 고려
 			InTarget->TakeDamage();
 			SetBullseye();
 
@@ -40,14 +40,14 @@ void AEnemy::Attack(Actor* InTarget, bool InIsBlank , RoundManager& InRound) // 
 		{
 			printf("총구가 본인을 향합니다.\n");
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			printf("찰칵....\n");
+			printf("찰칵....\n\n");
 			SetBullseye();
 		}
 		else
 		{
 			printf("총구가 본인을 향합니다.\n");
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			printf("Baaang!!!!\n");
+			printf("Baaang!!!!\n\n");
 			this->TakeDamage();
 			ResetBullseye();
 		}

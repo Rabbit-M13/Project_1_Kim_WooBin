@@ -6,14 +6,44 @@
 
 //std::vector<Inventory> PlayerInventory = { {"Beer", 0}, {"GunPowder", 0}, {"VisionGlasses", 0}, {"GoldSack", 0} };
 
-void APlayer::AddItem(const std::string& InItem)
+//void APlayer::AddItem(const std::string& InItem)
+//{
+//	// Store에서 구매하면 아이템 저장
+//	Inventory[InItem] += 1;
+//}
+
+void APlayer::BuyBeerSetGold(Items* InItem)
 {
-	// Store에서 구매하면 아이템 저장
-	Inventory[InItem] += 1;
+	this->Gold -= InItem->GetBeerItemPrice();
+}
+
+void APlayer::BuyGunpowderSetGold(Items* InItem)
+{
+	this->Gold -= InItem->GetGunpowderItemPrice();
+}
+
+void APlayer::BuyVisionglassesSetGold(Items* InItem)
+{
+	this->Gold -= InItem->GetVisionGlassItemPrice();
 }
 
 void APlayer::UseItem(Actor* InTarget, const std::string& InItem) // AddAttackPower()로 증가된 공격력 리셋해야함
 {
+	int TempItemChoose = -1;
+	const std::string& Initem = "미선택";
+
+	printf("\n사용할 아이템을 번호를 입력하세요\n[ 화약 - 1 | 맥주 - 2 | 수상한 안경 - 3]\n입력: ");
+	std::cin >> TempItemChoose;
+
+	// 아이템 사용 미구현함
+	/*switch (TempItemChoose)
+	{
+	case 1:
+		Initem = "화약";
+		break;
+	}*/
+		
+
 	if (Inventory.find(InItem) != Inventory.end())
 	{
 		if (InItem == "맥주")
@@ -62,7 +92,7 @@ void APlayer::ShowInventory() const
 		printf("%s : %d", Index.first.c_str(), Index.second);
 		first = false;
 	}
-	printf(" ]\n");
+	printf(" ]\n\n");
 }
 
 bool APlayer::SetShootTarget()
@@ -98,12 +128,12 @@ void APlayer::Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound)
 		if (InIsBlank)
 		{
 			printf("총구가 본인을 향합니다.\n");
-			printf("찰칵....\n");
+			printf("찰칵....\n\n");
 			SetBullseye();
 		}
 		else
 		{
-			printf("총구가 본인을 향합니다.\n");
+			printf("총구가 본인을 향합니다.\n\n");
 			printf("Baaang!!!!\n");
 			this->TakeDamage();
 			ResetBullseye();
@@ -113,13 +143,13 @@ void APlayer::Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound)
 	{
 		if (InIsBlank)
 		{
-			printf("총구가 상대를 향합니다.\n");
+			printf("총구가 상대를 향합니다.\n\n");
 			printf("찰칵....\n");
 			ResetBullseye();
 		}
 		else
 		{
-			printf("총구가 상대를 향합니다.\n");
+			printf("총구가 상대를 향합니다.\n\n");
 			printf("Baaang!!!!\n");
 			InTarget->TakeDamage();
 			SetBullseye();

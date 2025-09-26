@@ -36,6 +36,9 @@ public:
 	// 남은 골드량 리턴(int)
 	inline const int GetGoldLeft() const { return Gold; }
 	inline void AddGold(int InGold) { Gold += InGold; }
+	void BuyBeerSetGold(Items* InItem);
+	void BuyGunpowderSetGold(Items* InItem);
+	void BuyVisionglassesSetGold(Items* InItem);
 	//inline void UseGold(Items* InItem) { Gold -= InItem->GetItemPrice(); }
 
 	void UseItem(Actor* InTarget, const std::string& InItem);
@@ -44,7 +47,7 @@ public:
 	
 	void Attack(Actor* InTarget, bool InIsBlank, RoundManager& InRound);
 
-	std::unordered_map<std::string, int> GetInventory() { return Inventory; }
+	std::unordered_map<std::string, int>& GetInventory() { return Inventory; }
 
 	void ShowInventory() const;
 
