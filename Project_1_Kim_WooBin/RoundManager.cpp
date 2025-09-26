@@ -1,4 +1,5 @@
 #include "RoundManager.h"
+#include "Player.h"
 #include <algorithm>
 #include <vector>
 
@@ -137,6 +138,11 @@ void RoundManager::ReloadMagazine()
 		printf("\n\n");
 	}
 	
+}
+
+void RoundManager::RoundClearReward(APlayer* InPlayer)
+{
+	InPlayer->AddGold(RoundClearGold);
 }
 
 /// <summary>

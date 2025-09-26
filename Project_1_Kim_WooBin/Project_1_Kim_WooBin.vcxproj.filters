@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{86a6c9e3-a848-4105-af9c-19fd82470639}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_1_Kim_WooBin.cpp">
@@ -33,16 +36,17 @@
     <ClCompile Include="Store.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Items.cpp">
+    <ClCompile Include="RoundManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="RoundSystem.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Items.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt" />
     <Text Include="Guidance.txt" />
+    <Text Include="README.md" />
+    <Text Include="ToDoList.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -60,11 +64,11 @@
     <ClInclude Include="Store.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Items.h">
+    <ClInclude Include="RoundManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="RoundSystem.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Items.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

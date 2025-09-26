@@ -1,15 +1,22 @@
 #include "Player.h"
 #include "RoundManager.h"
+//#include "Items.h" 나중에 이거 사용하면 헤더에 있는거랑 꼬일지도 모르니까 주의
 #include <vector>
 #include <iostream>
 
 //std::vector<Inventory> PlayerInventory = { {"Beer", 0}, {"GunPowder", 0}, {"VisionGlasses", 0}, {"GoldSack", 0} };
 
+void APlayer::AddItem(const std::string& InItem)
+{
+	// Store에서 구매하면 아이템 저장
+	Inventory[InItem] += 1;
+}
+
 void APlayer::UseItem(Actor* InTarget, const std::string& InItem) // AddAttackPower()로 증가된 공격력 리셋해야함
 {
 	if (Inventory.find(InItem) != Inventory.end())
 	{
-		if (InItem == "Beer")
+		if (InItem == "맥주")
 		{
 			InTarget->AddHealth();
 
@@ -17,10 +24,10 @@ void APlayer::UseItem(Actor* InTarget, const std::string& InItem) // AddAttackPo
 
 			if (Inventory[InItem] <= 0)
 			{
-				Inventory.erase(InItem);
+				Inventory[InItem] = 0;
 			}
 		}
-		if (InItem == "GunPowder") // 턴 끝나고 InTarget->ResetAttackPower(); 호출 필요함
+		if (InItem == "화약") // 턴 끝나고 InTarget->ResetAttackPower(); 호출 필요함
 		{
 			InTarget->AddAttackPower();
 
@@ -28,19 +35,18 @@ void APlayer::UseItem(Actor* InTarget, const std::string& InItem) // AddAttackPo
 
 			if (Inventory[InItem] <= 0)
 			{
-				Inventory.erase(InItem);
+				Inventory[InItem] = 0;
 			}
 		}
-		if (InItem == "VisionGlasses")
+		if (InItem == "수상한 안경")
 		{
 			Inventory[InItem] -= 1;
 
 			if (Inventory[InItem] <= 0)
 			{
-				Inventory.erase(InItem);
+				Inventory[InItem] = 0;
 			}
 		}
-		// GoldSack은 1개까지만 구매 가능하고 사용하는 아이템 아님, 골드 증가량 50% 상승할 뿐임
 	}
 }
 
