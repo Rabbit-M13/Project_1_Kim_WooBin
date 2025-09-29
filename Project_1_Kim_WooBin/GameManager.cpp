@@ -32,12 +32,12 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		printf("\n\n[Ã¹ ¹øÂ° ¶ó¿îµå]\n\n");
 		GameRound.ResetRound();
 		printf("°øÆ÷Åº °³¼ö : %d\n½ÇÅº °³¼ö : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
-		printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
+		/*printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
 		for (int n : GameRound.GetMagazine())
 		{
 			printf("%d ", n);
 		}
-		printf("\n");
+		printf("\n");*/
 		while (pPlayer->IsAlive() && pEnemy->IsAlive())
 		{
 			// °ÔÀÓ ÁøÇàµÇ´Â °ø°£
@@ -122,12 +122,12 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		pPlayer->ResetActorStatus(); // RoundManager::NextRound()¿¡ ³ÖÀ¸·Á´Ù°¡ ¿ªÇÒ ±¸ºÐ ¸íÈ®ÇÏ°Ô ºÐ¸®ÇÏ±â À§ÇØ µû·Î ±¸Çö ¹× È£Ãâ || GameManager¿¡¼­ ÀÎ¼ö·Î ¹Þ¾Æ¼­ ½ÇÇàÇÏ°Ô ÅëÇÕÇØµµ µÉ °Å °°À½
 		pEnemy->ResetActorStatus();
 		printf("°øÆ÷Åº °³¼ö : %d\n½ÇÅº °³¼ö : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
-		printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
+		/*printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
 		for (int n : GameRound.GetMagazine())
 		{
 			printf("%d ", n);
 		}
-		printf("\n");
+		printf("\n");*/
 		while (pPlayer->IsAlive() && pEnemy->IsAlive())
 		{
 			// °ÔÀÓ ÁøÇàµÇ´Â °ø°£
@@ -212,12 +212,12 @@ void GameManager::Play() // ÀüÃ¼ ÇÏ³ªÀÇ ¹Ýº¹¹®À¸·Î °¨½Î°í Àç½ÃÀÛÇÒ ¼ö ÀÖ°Ô ¸¸µéÀ
 		pPlayer->ResetActorStatus();
 		pEnemy->ResetActorStatus();
 		printf("°øÆ÷Åº °³¼ö : %d\n½ÇÅº °³¼ö : %d\n", GameRound.GetBlankBullet(), GameRound.GetLiveBullet());
-		printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
+		/*printf("ÅºÃ¢ÀÇ ÀåÀü ¼ø¼­ : ");
 		for (int n : GameRound.GetMagazine())
 		{
 			printf("%d ", n);
 		}
-		printf("\n");
+		printf("\n");*/
 		while (pPlayer->IsAlive() && pEnemy->IsAlive())
 		{
 			// °ÔÀÓ ÁøÇàµÇ´Â °ø°£

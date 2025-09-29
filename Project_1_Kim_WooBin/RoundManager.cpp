@@ -130,12 +130,12 @@ void RoundManager::ReloadMagazine()
 		ResetMagazineIndex();
 		SetMagazine();
 		// Debug
-		printf("\n\n재장전 된 탄창의 장전 순서 : ");
+		/*printf("\n\n재장전 된 탄창의 장전 순서 : ");
 		for (int n : GetMagazine())
 		{
 			printf("%d ", n);
 		}
-		printf("\n\n");
+		printf("\n\n");*/
 	}
 	
 }
